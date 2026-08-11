@@ -1,0 +1,78 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.whySolergy {
+  padding: 80px $container-padding;
+}
+
+.inner {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 218px;
+  align-items: center;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.imageWrap {
+  position: relative;
+}
+
+.arc {
+  position: absolute;
+  right: -32px;
+  top: 40px;
+  bottom: 40px;
+  width: 120px;
+  border: 2px solid $color-primary;
+  border-left: none;
+  border-radius: 0 200px 200px 0;
+  z-index: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.content {
+  max-width: 460px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $color-text-desc;
+  margin-bottom: 28px;
+}
+
+.content button {
+  text-transform: uppercase;
+}

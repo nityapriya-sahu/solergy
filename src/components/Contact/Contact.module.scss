@@ -1,0 +1,154 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact {
+  padding: 40px $container-padding 80px;
+}
+
+.inner {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  border: 1px solid $color-border;
+  border-radius: 24px;
+  padding: 48px;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+}
+
+.info {
+  position: relative;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: $color-text-dark;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  color: $color-primary;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $color-text-desc;
+  margin-bottom: 32px;
+  max-width: 420px;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.iconBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  display: block;
+  font-size: 13px;
+  color: $color-text-desc;
+}
+
+.itemValue {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-text-dark;
+}
+
+.dots {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+
+  @media (max-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(236, 77, 0, 0.25);
+}
+
+.form {
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+}
+
+.formHeading {
+  font-size: 24px;
+  font-weight: 800;
+  color: $color-text-dark;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  font-family: $font-family;
+  font-size: 15px;
+  color: $color-text-dark;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 14px 16px;
+
+  &::placeholder {
+    color: #9CA3AF;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+.textarea {
+  resize: vertical;
+}

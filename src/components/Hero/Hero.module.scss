@@ -1,0 +1,141 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  padding: 64px $container-padding 100px;
+}
+
+.inner {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.content {
+  max-width: 480px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 32px;
+  }
+}
+
+.highlight {
+  color: $color-primary;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $color-text-desc;
+  margin-bottom: 32px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  button {
+    text-transform: uppercase;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.sunCircle {
+  position: absolute;
+  top: -20px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: $color-primary;
+  z-index: 0;
+}
+
+.arc {
+  position: absolute;
+  left: -32px;
+  top: 40px;
+  bottom: 60px;
+  width: 120px;
+  border: 2px solid $color-primary;
+  border-right: none;
+  border-radius: 200px 0 0 200px;
+  z-index: 0;
+}
+
+.houseImage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  display: block;
+}
+
+.statsCard {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: $color-white;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 20px 24px;
+  display: flex;
+  gap: 24px;
+  width: calc(100% - 32px);
+  max-width: 420px;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: $color-primary;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: $color-text-desc;
+  white-space: nowrap;
+}

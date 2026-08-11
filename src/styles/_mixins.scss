@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+@mixin container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+@mixin eyebrow {
+  color: $color-primary;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

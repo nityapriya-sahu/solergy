@@ -1,0 +1,144 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.testimonials {
+  padding: 80px $container-padding;
+  background-color: #FAFAFA;
+}
+
+.inner {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: 800;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: $color-primary;
+}
+
+.subheading {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $color-text-desc;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardReveal {
+  opacity: 0;
+  transform: translateY(32px) scale(0.97);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cardVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card {
+  position: relative;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  padding: 32px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: transparent;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.quoteMark {
+  display: block;
+  font-size: 56px;
+  font-weight: 800;
+  color: $color-primary;
+  line-height: 1;
+  margin-bottom: 12px;
+  font-family: Georgia, serif;
+}
+
+.quote {
+  font-size: 15px;
+  line-height: 1.7;
+  color: $color-text-dark;
+  margin-bottom: 24px;
+  padding-right: 32px;
+}
+
+.dots {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(236, 77, 0, 0.4);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid $color-border;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 800;
+  color: $color-text-dark;
+}
+
+.role {
+  font-size: 14px;
+  font-style: italic;
+  color: $color-text-desc;
+  margin-bottom: 4px;
+}
+
+.rating {
+  color: $color-primary;
+  font-size: 13px;
+  letter-spacing: 2px;
+}

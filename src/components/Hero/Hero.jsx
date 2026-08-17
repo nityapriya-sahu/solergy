@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import heroHouse from "../../assets/hero-house.png";
+import heroHouse from "../../assets/hero-house-new.webp";
 import Button from "../common/Button/Button";
 import Stat from "./Stat";
 import useInView from "../../hooks/useInView";

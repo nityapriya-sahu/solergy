@@ -1,0 +1,13 @@
+.sectionReveal {
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(60px);
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
+  will-change: opacity, filter, transform;
+}
+
+.sectionVisible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}

@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import FAQItem from './FAQItem';
+import useInView from '../../hooks/useInView';
 import styles from './FAQ.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const FAQS = [
   {
@@ -32,9 +34,17 @@ const FAQS = [
 
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
+  const sectionRef = useRef(null);
+  const visible = useInView(sectionRef, 0.1);
 
   return (
-    <section className={styles.faq} id="faq">
+    <section
+      className={`${styles.faq} ${reveal.sectionReveal} ${
+        visible ? reveal.sectionVisible : ''
+      }`}
+      id="faq"
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <p className={styles.eyebrow}>FAQs</p>
         <h2 className={styles.heading}>

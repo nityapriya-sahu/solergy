@@ -4,8 +4,17 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: $color-white;
-  padding: 16px $container-padding;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  padding: 8px $container-padding;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.headerScrolled {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .inner {
@@ -17,11 +26,11 @@
   gap: 16px;
   border: 1px solid $color-border;
   border-radius: 999px;
-  padding: 10px 10px 10px 24px;
+  padding: 6px 6px 6px 20px;
 
   @media (max-width: $breakpoint-tablet) {
     border-radius: 999px;
-    padding: 10px 16px;
+    padding: 6px 12px;
   }
 }
 
@@ -31,13 +40,13 @@
   flex-shrink: 0;
 
   img {
-    height: 48px;
+    height: 34px;
     width: auto;
   }
 
   @media (max-width: $breakpoint-mobile) {
     img {
-      height: 36px;
+      height: 28px;
     }
   }
 }
@@ -54,10 +63,10 @@
 
 .navLink {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: uppercase;
   color: $color-text-dark;
-  padding: 12px 22px;
+  padding: 9px 18px;
   border-radius: 999px;
   transition: background-color 0.2s ease;
 
@@ -102,7 +111,9 @@
     height: 2px;
     background-color: $color-text-dark;
     border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
   }
 
   @media (max-width: $breakpoint-tablet) {
@@ -132,7 +143,10 @@
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+    transition:
+      max-height 0.35s ease,
+      opacity 0.3s ease,
+      margin-top 0.35s ease;
   }
 }
 
@@ -160,7 +174,9 @@
   color: $color-text-dark;
   padding: 14px 18px;
   border-radius: 12px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);

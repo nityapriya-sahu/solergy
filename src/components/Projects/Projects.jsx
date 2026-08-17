@@ -6,6 +6,7 @@ import brickHouse from '../../assets/service2.jpg';
 import ProjectCard from './ProjectCard';
 import useInView from '../../hooks/useInView';
 import styles from './Projects.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const PROJECTS = [
   {
@@ -45,9 +46,17 @@ const PROJECTS = [
 function Projects() {
   const gridRef = useRef(null);
   const visible = useInView(gridRef);
+  const sectionRef = useRef(null);
+  const sectionVisible = useInView(sectionRef, 0.1);
 
   return (
-    <section className={styles.projects} id="projects">
+    <section
+      className={`${styles.projects} ${reveal.sectionReveal} ${
+        sectionVisible ? reveal.sectionVisible : ''
+      }`}
+      id="projects"
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <p className={styles.eyebrow}>Our Projects</p>
         <h2 className={styles.heading}>

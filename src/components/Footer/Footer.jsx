@@ -1,5 +1,8 @@
-import logo from '../../assets/solergy-logo.png';
+import { useRef } from 'react';
+import logo from '../../assets/solergy-white.png';
+import useInView from '../../hooks/useInView';
 import styles from './Footer.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const FOOTER_COLUMNS = [
   {
@@ -55,31 +58,39 @@ const CONTACT_SVGS = {
 };
 
 const SOCIAL_SVGS = {
-  facebook: <path d="M12 5.5h-1.3c-.5 0-1 .4-1 1v1.5H12l-.3 2H9.7V15H7.4v-5H6V8h1.4V6.3C7.4 4.8 8.5 3.5 10 3.5h2v2z" fill="#fff" />,
+  facebook: <path d="M12 5.5h-1.3c-.5 0-1 .4-1 1v1.5H12l-.3 2H9.7V15H7.4v-5H6V8h1.4V6.3C7.4 4.8 8.5 3.5 10 3.5h2v2z" fill="currentColor" />,
   instagram: (
     <>
-      <rect x="3" y="3" width="12" height="12" rx="3.5" stroke="#fff" strokeWidth="1.2" />
-      <circle cx="9" cy="9" r="3" stroke="#fff" strokeWidth="1.2" />
-      <circle cx="12.7" cy="5.3" r="0.8" fill="#fff" />
+      <rect x="3" y="3" width="12" height="12" rx="3.5" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.2" />
+      <circle cx="12.7" cy="5.3" r="0.8" fill="currentColor" />
     </>
   ),
   youtube: (
     <>
-      <rect x="2.5" y="5" width="13" height="8" rx="2.5" stroke="#fff" strokeWidth="1.2" />
-      <path d="M7.5 7.3v3.4l3-1.7-3-1.7z" fill="#fff" />
+      <rect x="2.5" y="5" width="13" height="8" rx="2.5" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M7.5 7.3v3.4l3-1.7-3-1.7z" fill="currentColor" />
     </>
   ),
   pinterest: (
     <path
       d="M9 3.5A5.5 5.5 0 006.2 13.7c-.1-.9-.2-2.2 0-3.2l1-4.2s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.3 0 .8-.5 2-.8 3.1-.2.9.4 1.7 1.4 1.7 1.6 0 2.8-1.7 2.8-4.2 0-2.2-1.6-3.7-3.8-3.7-2.6 0-4.1 1.9-4.1 3.9 0 .8.3 1.6.7 2-.1.3-.2.9-.2 1a.15.15 0 01-.2.1c-.9-.4-1.4-1.6-1.4-2.6 0-2.1 1.6-4.5 4.6-4.5 2.4 0 4.3 1.7 4.3 4 0 2.4-1.5 4.3-3.6 4.3-.7 0-1.4-.4-1.6-.8l-.4 1.7c-.2.6-.5 1.4-.8 1.8.6.2 1.2.3 1.9.3A5.5 5.5 0 009 3.5z"
-      fill="#fff"
+      fill="currentColor"
     />
   ),
 };
 
 function Footer() {
+  const sectionRef = useRef(null);
+  const visible = useInView(sectionRef, 0.1);
+
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={`${styles.footer} ${reveal.sectionReveal} ${
+        visible ? reveal.sectionVisible : ''
+      }`}
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <div className={styles.brand}>
           <img src={logo} alt="Solergy" className={styles.logo} />

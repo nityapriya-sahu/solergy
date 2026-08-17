@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import TestimonialCard from './TestimonialCard';
 import useInView from '../../hooks/useInView';
 import styles from './Testimonials.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const QUOTE =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley.";
@@ -15,9 +16,16 @@ const TESTIMONIALS = [
 function Testimonials() {
   const cardsRef = useRef(null);
   const visible = useInView(cardsRef);
+  const sectionRef = useRef(null);
+  const sectionVisible = useInView(sectionRef, 0.1);
 
   return (
-    <section className={styles.testimonials}>
+    <section
+      className={`${styles.testimonials} ${reveal.sectionReveal} ${
+        sectionVisible ? reveal.sectionVisible : ''
+      }`}
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <p className={styles.eyebrow}>Testimonials</p>
         <h2 className={styles.heading}>

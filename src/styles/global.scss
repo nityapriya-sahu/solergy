@@ -1,5 +1,13 @@
 @use 'variables' as *;
 
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../assets/fonts/ProximaNova-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +19,22 @@ html, body {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: $color-primary transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $color-primary;
+  border-radius: 999px;
 }
 
 section[id] {

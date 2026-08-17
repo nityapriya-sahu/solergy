@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from '../common/Button/Button';
+import useInView from '../../hooks/useInView';
 import styles from './Contact.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const PhoneIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,6 +41,8 @@ const CONTACT_ITEMS = [
 
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const sectionRef = useRef(null);
+  const visible = useInView(sectionRef, 0.1);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -49,7 +53,13 @@ function Contact() {
   };
 
   return (
-    <section className={styles.contact} id="contact">
+    <section
+      className={`${styles.contact} ${reveal.sectionReveal} ${
+        visible ? reveal.sectionVisible : ''
+      }`}
+      id="contact"
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <div className={styles.info}>
           <p className={styles.eyebrow}>Get in Touch</p>

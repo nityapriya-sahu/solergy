@@ -1,9 +1,9 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .services {
-  padding: 80px $container-padding;
-  background-color: #FAFAFA;
+  padding: 48px $container-padding;
+  background-color: #fafafa;
 }
 
 .inner {
@@ -65,16 +65,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
+  min-height: 420px;
   background-color: $color-white;
   border: 1px solid $color-border;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
-  will-change: transform, opacity;
-  transition: transform 0.1s linear, opacity 0.1s linear;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 0.25s ease-out,
+    opacity 0.25s ease-out,
+    filter 0.25s ease-out;
 
   @media (max-width: $breakpoint-tablet) {
     grid-template-columns: 1fr;
+    min-height: auto;
     height: auto;
   }
 }
@@ -98,7 +103,7 @@
 }
 
 .imageWrap {
-  height: 380px;
+  height: 420px;
 
   @media (max-width: $breakpoint-tablet) {
     height: 320px;

@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import Button from '../common/Button/Button';
 import WhySolarCard from './WhySolarCard';
 import useInView from '../../hooks/useInView';
 import styles from './WhySolar.module.scss';
+import reveal from '../../styles/reveal.module.scss';
 
 const CARDS = [
   {
@@ -27,10 +27,16 @@ const CARDS = [
 
 function WhySolar() {
   const sectionRef = useRef(null);
-  const visible = useInView(sectionRef);
+  const visible = useInView(sectionRef, 0.1);
 
   return (
-    <section className={styles.whySolar} id="about" ref={sectionRef}>
+    <section
+      className={`${styles.whySolar} ${reveal.sectionReveal} ${
+        visible ? reveal.sectionVisible : ''
+      }`}
+      id="about"
+      ref={sectionRef}
+    >
       <div className={styles.inner}>
         <div className={`${styles.headingReveal} ${visible ? styles.headingVisible : ''}`}>
           <p className={styles.eyebrow}>Why Solar</p>
@@ -52,15 +58,6 @@ function WhySolar() {
               <WhySolarCard title={card.title} description={card.description} />
             </div>
           ))}
-        </div>
-
-        <div
-          className={`${styles.buttonReveal} ${visible ? styles.buttonVisible : ''}`}
-          style={{ transitionDelay: visible ? '550ms' : '0ms' }}
-        >
-          <Button variant="primary" showArrow href="#contact">
-            Get a Free Quote
-          </Button>
         </div>
       </div>
     </section>

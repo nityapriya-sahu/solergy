@@ -1,60 +1,34 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/solergy-logo.png";
+import logo from "../../assets/solergy-black.png";
 import Button from "../common/Button/Button";
 import styles from "./Header.module.scss";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "FAQ", href: "#faq" },
+  { label: "About", href: "#" },
+  { label: "Calculator", href: "#" },
+  { label: "Projects", href: "#" },
+  { label: "FAQ", href: "#" },
 ];
 
-const SCROLL_OFFSET = 140;
-
 function Header() {
-  const [activeLink, setActiveLink] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((link) => ({
-      label: link.label,
-      el: document.getElementById(link.href.slice(1)),
-    })).filter((section) => section.el);
+    const scrollThreshold = () => window.innerHeight * 0.1;
 
-    let frame = null;
-
-    const updateActiveOnScroll = () => {
-      frame = null;
-      const scrollPos = window.scrollY + SCROLL_OFFSET;
-
-      let current = sections[0]?.label;
-      for (const section of sections) {
-        if (section.el.offsetTop <= scrollPos) {
-          current = section.label;
-        }
-      }
-
-      if (current) {
-        setActiveLink(current);
-      }
+    const updateScrolled = () => {
+      setScrolled(window.scrollY > scrollThreshold());
     };
 
-    const onScroll = () => {
-      if (frame === null) {
-        frame = requestAnimationFrame(updateActiveOnScroll);
-      }
-    };
-
-    updateActiveOnScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    window.addEventListener("resize", updateScrolled);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame !== null) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScrolled);
+      window.removeEventListener("resize", updateScrolled);
     };
   }, []);
 
@@ -67,18 +41,21 @@ function Header() {
 
   const handleLogoClick = (e) => {
     e.preventDefault();
-    setActiveLink("Home");
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleNavClick = (label) => {
-    setActiveLink(label);
+  const handleNavClick = (e, href) => {
+    if (href === "#") {
+      e.preventDefault();
+    }
     setMenuOpen(false);
   };
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
+    >
       <div className={styles.inner}>
         <a href="#home" className={styles.logo} onClick={handleLogoClick}>
           <img src={logo} alt="Solergy" />
@@ -89,9 +66,9 @@ function Header() {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => handleNavClick(link.label)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`${styles.navLink} ${
-                activeLink === link.label ? styles.active : ""
+                link.label === "Home" ? styles.active : ""
               }`}
             >
               {link.label}
@@ -118,15 +95,17 @@ function Header() {
         </button>
       </div>
 
-      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}>
+      <div
+        className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
+      >
         <nav className={styles.mobileNav}>
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              onClick={() => handleNavClick(link.label)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`${styles.mobileNavLink} ${
-                activeLink === link.label ? styles.active : ""
+                link.label === "Home" ? styles.active : ""
               }`}
             >
               {link.label}

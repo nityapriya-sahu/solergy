@@ -39,7 +39,7 @@ function WhySolar() {
     >
       <div className={styles.inner}>
         <div className={`${styles.headingReveal} ${visible ? styles.headingVisible : ''}`}>
-          <p className={styles.eyebrow}>Why Solar</p>
+          {/* <p className={styles.eyebrow}>Why Solar</p> */}
           <h2 className={styles.heading}>
             The Smart <span className={styles.highlight}>Choice for</span> a
             Cleaner, Greener Future

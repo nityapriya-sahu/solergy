@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import heroHouse from '../../assets/hero-house.png';
+// import heroHouse from '../../assets/hero-house.png';
 import whySolergyHouse from '../../assets/why-solergy-house.jpg';
 import houseWater from '../../assets/service1.jpg';
 import brickHouse from '../../assets/service2.jpg';
@@ -9,14 +9,14 @@ import styles from './Projects.module.scss';
 import reveal from '../../styles/reveal.module.scss';
 
 const PROJECTS = [
-  {
-    image: heroHouse,
-    category: 'Residential',
-    title: 'Modern Home Installation',
-    location: 'Austin, Texas',
-    power: '6.2 kW Solar',
-    date: 'May 2024',
-  },
+  // {
+  //   image: heroHouse,
+  //   category: 'Residential',
+  //   title: 'Modern Home Installation',
+  //   location: 'Austin, Texas',
+  //   power: '6.2 kW Solar',
+  //   date: 'May 2024',
+  // },
   {
     image: whySolergyHouse,
     category: 'Residential',
@@ -58,7 +58,7 @@ function Projects() {
       ref={sectionRef}
     >
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>Our Projects</p>
+        {/* <p className={styles.eyebrow}>Our Projects</p> */}
         <h2 className={styles.heading}>
           Powering a Better <span className={styles.highlight}>Tomorrow</span>
         </h2>

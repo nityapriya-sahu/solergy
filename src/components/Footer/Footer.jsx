@@ -139,7 +139,12 @@ function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <p>&copy; {new Date().getFullYear()} Solergy. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Solergy. All rights reserved.</p>
+        <div className={styles.legal}>
+          <a href="#privacy">Privacy</a>
+          <span className={styles.dot}>&middot;</span>
+          <a href="#terms">Terms</a>
+        </div>
       </div>
     </footer>
   );

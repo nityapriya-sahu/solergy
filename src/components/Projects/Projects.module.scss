@@ -3,7 +3,7 @@
 
 .projects {
   padding: 48px $container-padding;
-  background-color: #FAFAFA;
+  background-color: #ffffff;
 }
 
 .inner {
@@ -38,7 +38,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   text-align: left;
 
@@ -63,46 +63,22 @@
   transform: translateY(0) scale(1);
 }
 
-@keyframes cardZigzagPop {
-  0% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  20% {
-    transform: translate(-6px, -4px) rotate(-2deg) scale(1.01);
-  }
-  40% {
-    transform: translate(5px, -8px) rotate(2deg) scale(1.02);
-  }
-  60% {
-    transform: translate(-3px, -12px) rotate(-1deg) scale(1.03);
-  }
-  80% {
-    transform: translate(2px, -14px) rotate(1deg) scale(1.035);
-  }
-  100% {
-    transform: translate(0, -16px) rotate(0deg) scale(1.04);
-  }
-}
-
 .card {
   height: 100%;
   background-color: $color-white;
   border: 1px solid $color-border;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+  transition: transform 0.25s ease;
 
   &:hover {
-    animation: cardZigzagPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    border-color: transparent;
-    box-shadow: 0 26px 44px rgba(0, 0, 0, 0.16);
+    transform: translateY(-6px);
   }
 }
 
 .imageWrap {
   position: relative;
-  height: 180px;
+  height: 260px;
 }
 
 .image {

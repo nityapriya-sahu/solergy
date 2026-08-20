@@ -107,12 +107,35 @@
 }
 
 .bottom {
-  border-top: 1px solid rgba(236, 77, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding: 20px $container-padding;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 
   p {
     font-size: 14px;
     color: #B3B3B3;
   }
+}
+
+.legal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+
+  a {
+    color: #B3B3B3;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+.dot {
+  color: #B3B3B3;
 }

@@ -1,15 +1,19 @@
-import { useEffect, useRef } from 'react';
-import styles from './Tagline.module.scss';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import styles from "./Tagline.module.scss";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WORDS = [
-  { text: 'We', highlight: false },
-  { text: 'Engineer.', highlight: true },
-  { text: 'We', highlight: false },
-  { text: 'Procure.', highlight: true, lineBreakAfter: true },
-  { text: 'We', highlight: false },
-  { text: 'Build.', highlight: true },
-  { text: 'We', highlight: false },
-  { text: 'Maintain.', highlight: true },
+  { text: "We", highlight: false },
+  { text: "Engineer.", highlight: true },
+  { text: "We", highlight: false },
+  { text: "Procure.", highlight: true, lineBreakAfter: true },
+  { text: "We", highlight: false },
+  { text: "Build.", highlight: true },
+  { text: "We", highlight: false },
+  { text: "Maintain.", highlight: true },
 ];
 
 const DIM_COLOR = [216, 216, 220];
@@ -22,7 +26,7 @@ const mixColor = (from, to, progress) =>
   `rgb(${lerp(from[0], to[0], progress)}, ${lerp(from[1], to[1], progress)}, ${lerp(
     from[2],
     to[2],
-    progress
+    progress,
   )})`;
 
 function Tagline() {
@@ -30,21 +34,11 @@ function Tagline() {
   const wordRefs = useRef([]);
 
   useEffect(() => {
-    let frame = null;
+    const words = wordRefs.current;
 
-    const update = () => {
-      frame = null;
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const start = window.innerHeight * 0.85;
-      const end = window.innerHeight * 0.25;
-      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-
+    const applyProgress = (progress) => {
       const activePosition = progress * WORDS.length;
-
-      wordRefs.current.forEach((el, index) => {
+      words.forEach((el, index) => {
         if (!el) return;
         const wordProgress = Math.min(Math.max(activePosition - index, 0), 1);
         const target = WORDS[index].highlight ? PRIMARY_COLOR : DARK_COLOR;
@@ -52,21 +46,21 @@ function Tagline() {
       });
     };
 
-    const onScroll = () => {
-      if (frame === null) {
-        frame = requestAnimationFrame(update);
-      }
-    };
+    applyProgress(0);
 
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        pin: true,
+        start: "top top",
+        end: () => `+=${WORDS.length * window.innerHeight * 0.35}`,
+        scrub: 0.4,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => applyProgress(self.progress),
+      });
+    }, sectionRef);
 
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (frame !== null) cancelAnimationFrame(frame);
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -82,7 +76,7 @@ function Tagline() {
             >
               {word.text}
             </span>
-            {word.lineBreakAfter ? <br /> : ' '}
+            {word.lineBreakAfter ? <br /> : " "}
           </span>
         ))}
       </p>
